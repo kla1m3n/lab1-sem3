@@ -33,3 +33,11 @@ jobs:
 
       - name: Проверка
         run: ctest --preset ${{ matrix.preset }}
+        
+      - name: Загрузить исполняемый файл
+        if: matrix.preset == 'default'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab1-linux-cpp20
+          path: build/default/lab1
+          if-no-files-found: error
